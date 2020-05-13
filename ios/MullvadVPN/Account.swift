@@ -13,26 +13,29 @@ import StoreKit
 import os
 
 /// A enum describing the errors emitted by `Account`
-enum AccountError: Error {
+enum AccountError: ChainedError {
     /// A failure to perform the login
     case login(AccountLoginError)
 
     /// A failure to login with the new account
-    case createNew(CreateAccountError)
+    case createNew(AccountLoginError)
 
     /// A failure to log out
     case logout(TunnelManagerError)
 }
 
-/// A enum describing the error emitted during login
-enum AccountLoginError: Error {
+enum AccountLoginError: ChainedError {
     case rpc(MullvadRpc.Error)
     case tunnelConfiguration(TunnelManagerError)
-}
 
-enum CreateAccountError: Error {
-    case rpc(MullvadRpc.Error)
-    case tunnelConfiguration(TunnelManagerError)
+    var errorDescription: String? {
+        switch self {
+        case .rpc:
+            return "Rpc error"
+        case .tunnelConfiguration:
+            return "Tunnel configuration error"
+        }
+    }
 }
 
 extension AccountError: LocalizedError {
@@ -138,10 +141,10 @@ class Account {
 
     func loginWithNewAccount() -> AnyPublisher<String, AccountError> {
         return rpc.createAccount()
-            .mapError { CreateAccountError.rpc($0) }
+            .mapError { AccountLoginError.rpc($0) }
             .flatMap { (newAccountToken) in
                 TunnelManager.shared.setAccount(accountToken: newAccountToken)
-                    .mapError { CreateAccountError.tunnelConfiguration($0) }
+                    .mapError { AccountLoginError.tunnelConfiguration($0) }
                     .map { (newAccountToken, Date()) }
         }.mapError { AccountError.createNew($0) }
             .receive(on: DispatchQueue.main)
