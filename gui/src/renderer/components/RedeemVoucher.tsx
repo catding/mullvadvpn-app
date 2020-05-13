@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Types } from 'reactxp';
 import { VoucherResponse } from '../../shared/daemon-rpc-types';
 import { messages } from '../../shared/gettext';
+import { useScheduler } from '../../shared/scheduler';
 import { useAppContext } from '../context';
 import useActions from '../lib/actionsHook';
 import accountActions from '../redux/account/actions';
@@ -204,9 +205,14 @@ interface IRedeemVoucherButtonProps {
 export function RedeemVoucherButton(props: IRedeemVoucherButtonProps) {
   const isBlocked = useSelector((state: IReduxState) => state.connection.isBlocked);
   const [showAlert, setShowAlert] = useState(false);
+  const closeScheduler = useScheduler();
 
   const onPress = useCallback(() => setShowAlert(true), []);
-  const onAlertClose = useCallback(() => setShowAlert(false), []);
+  const onClose = useCallback(() => setShowAlert(false), []);
+
+  const onSuccess = useCallback(() => {
+    closeScheduler.schedule(onClose, 1000);
+  }, []);
 
   return (
     <>
@@ -214,8 +220,8 @@ export function RedeemVoucherButton(props: IRedeemVoucherButtonProps) {
         {messages.pgettext('redeem-voucher-alert', 'Redeem voucher')}
       </AppButton.GreenButton>
       {showAlert && (
-        <RedeemVoucherContainer onSuccess={onAlertClose}>
-          <RedeemVoucherAlert onClose={onAlertClose} />
+        <RedeemVoucherContainer onSuccess={onSuccess}>
+          <RedeemVoucherAlert onClose={onClose} />
         </RedeemVoucherContainer>
       )}
     </>

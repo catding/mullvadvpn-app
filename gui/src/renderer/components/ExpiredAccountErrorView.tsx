@@ -12,6 +12,7 @@ import styles, { StyledAccountTokenLabel } from './ExpiredAccountErrorViewStyles
 import ImageView from './ImageView';
 import { ModalAlert, ModalAlertType } from './Modal';
 import { RedeemVoucherContainer, RedeemVoucherAlert } from './RedeemVoucher';
+import { Scheduler } from '../../shared/scheduler';
 
 export enum RecoveryAction {
   openBrowser,
@@ -40,6 +41,8 @@ export default class ExpiredAccountErrorView extends Component<
   IExpiredAccountErrorViewProps,
   IExpiredAccountErrorViewState
 > {
+  private closeVoucherAlertScheduler = new Scheduler();
+
   public state: IExpiredAccountErrorViewState = {
     showBlockWhenDisconnectedAlert: false,
     showRedeemVoucherAlert: false,
@@ -49,6 +52,10 @@ export default class ExpiredAccountErrorView extends Component<
     if (this.props.accountExpiry && !this.props.accountExpiry.hasExpired()) {
       this.props.hideWelcomeView();
     }
+  }
+
+  public componentWillUnmount() {
+    this.closeVoucherAlertScheduler.cancel();
   }
 
   public render() {
@@ -165,7 +172,7 @@ export default class ExpiredAccountErrorView extends Component<
 
   private renderRedeemVoucherAlert() {
     return (
-      <RedeemVoucherContainer onSuccess={this.props.hideWelcomeView}>
+      <RedeemVoucherContainer onSuccess={this.onRedeemVoucherSuccess}>
         <RedeemVoucherAlert onClose={this.onCloseRedeemVoucherAlert} />
       </RedeemVoucherContainer>
     );
@@ -228,6 +235,12 @@ export default class ExpiredAccountErrorView extends Component<
       return RecoveryAction.openBrowser;
     }
   }
+
+  private onRedeemVoucherSuccess = () => {
+    this.closeVoucherAlertScheduler.schedule(() => {
+      this.props.hideWelcomeView();
+    }, 1000);
+  };
 
   private onOpenRedeemVoucherAlert = () => {
     if (this.getRecoveryAction() === RecoveryAction.disableBlockedWhenDisconnected) {
