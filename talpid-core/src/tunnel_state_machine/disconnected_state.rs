@@ -40,7 +40,7 @@ impl TunnelState for DisconnectedState {
         _: Self::Bootstrap,
     ) -> (TunnelStateWrapper, TunnelStateTransition) {
         #[cfg(target_os = "linux")]
-        shared_values.split_tunnel.disable_routing();
+        let _ = shared_values.route_manager.disable_exclusions_routes();
         Self::set_firewall_policy(shared_values);
         #[cfg(target_os = "android")]
         shared_values.tun_provider.close_tun();
