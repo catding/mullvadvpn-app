@@ -243,7 +243,7 @@ export default class WireguardKeys extends Component<IProps, IState> {
         if (key.valid === true) {
           return (
             <Text style={styles.wgkeys__valid_key}>
-              {messages.pgettext('account-view', 'Key is valid')}
+              {messages.pgettext('wireguard-key-view', 'Key is valid')}
             </Text>
           );
         } else if (key.valid === false) {

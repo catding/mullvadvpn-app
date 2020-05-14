@@ -67,7 +67,7 @@ export default class ExpiredAccountErrorView extends Component<
           {this.getRecoveryAction() === RecoveryAction.disconnect && (
             <AppButton.BlockingButton onPress={this.props.onDisconnect}>
               <AppButton.RedButton style={styles.button}>
-                {messages.pgettext('connect-view', 'Disconnect')}
+                {messages.pgettext('tunnel-control', 'Disconnect')}
               </AppButton.RedButton>
             </AppButton.BlockingButton>
           )}
@@ -77,7 +77,7 @@ export default class ExpiredAccountErrorView extends Component<
           <AppButton.GreenButton
             disabled={this.getRecoveryAction() === RecoveryAction.disconnect}
             onPress={this.onOpenRedeemVoucherAlert}>
-            {messages.pgettext('connect-view', 'Redeem voucher')}
+            {messages.pgettext('redeem-voucher-view', 'Redeem voucher')}
           </AppButton.GreenButton>
         </View>
 
@@ -155,8 +155,8 @@ export default class ExpiredAccountErrorView extends Component<
 
   private renderExternalPaymentButton() {
     const buttonText = this.isNewAccount()
-      ? messages.pgettext('connect-view', 'Buy credit')
-      : messages.pgettext('connect-view', 'Buy more credit');
+      ? messages.pgettext('account-view', 'Buy credit')
+      : messages.pgettext('account-view', 'Buy more credit');
 
     return (
       <AppButton.BlockingButton
@@ -183,7 +183,7 @@ export default class ExpiredAccountErrorView extends Component<
               key="cancel"
               disabled={this.state.redeemingVoucher}
               onPress={this.onCloseRedeemVoucherAlert}>
-              {messages.pgettext('connect-view', 'Cancel')}
+              {messages.gettext('Cancel')}
             </AppButton.BlueButton>,
           ]}>
           <Text style={styles.fieldLabel}>
@@ -204,7 +204,7 @@ export default class ExpiredAccountErrorView extends Component<
           <AppButton.BlueButton
             key="cancel"
             onPress={this.onCloseBlockWhenDisconnectedInstructions}>
-            {messages.pgettext('connect-view', 'Close')}
+            {messages.gettext('Close')}
           </AppButton.BlueButton>,
         ]}>
         <Text style={styles.fieldLabel}>
@@ -220,7 +220,9 @@ export default class ExpiredAccountErrorView extends Component<
           )}
         </Text>
         <Cell.Container>
-          <Cell.Label>{messages.pgettext('connect-view', 'Always require VPN')}</Cell.Label>
+          <Cell.Label>
+            {messages.pgettext('advanced-settings-view', 'Always require VPN')}
+          </Cell.Label>
           <Cell.Switch
             isOn={this.props.blockWhenDisconnected}
             onChange={this.props.setBlockWhenDisconnected}

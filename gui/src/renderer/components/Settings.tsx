@@ -108,7 +108,7 @@ export default class Settings extends Component<IProps> {
     const isOutOfTime = expiry ? expiry.hasExpired() : false;
     const formattedExpiry = expiry ? expiry.remainingTime().toUpperCase() : '';
 
-    const outOfTimeMessage = messages.pgettext('settings-view', 'OUT OF TIME');
+    const outOfTimeMessage = messages.pgettext('account-view', 'OUT OF TIME');
 
     return (
       <View>
