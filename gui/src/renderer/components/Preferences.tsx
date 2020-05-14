@@ -43,26 +43,16 @@ export default class Preferences extends Component<IProps> {
               <NavigationBar>
                 <NavigationItems>
                   <BackBarItem action={this.props.onClose}>
-                    {
-                      // TRANSLATORS: Back button in navigation bar
-                      messages.pgettext('navigation-bar', 'Settings')
-                    }
+                    {messages.pgettext('navigation', 'Settings')}
                   </BackBarItem>
-                  <TitleBarItem>
-                    {
-                      // TRANSLATORS: Title label in navigation bar
-                      messages.pgettext('preferences-nav', 'Preferences')
-                    }
-                  </TitleBarItem>
+                  <TitleBarItem>{messages.pgettext('navigation', 'Preferences')}</TitleBarItem>
                 </NavigationItems>
               </NavigationBar>
 
               <View style={styles.preferences__container}>
                 <NavigationScrollbars>
                   <SettingsHeader>
-                    <HeaderTitle>
-                      {messages.pgettext('preferences-view', 'Preferences')}
-                    </HeaderTitle>
+                    <HeaderTitle>{messages.pgettext('navigation', 'Preferences')}</HeaderTitle>
                   </SettingsHeader>
 
                   <View style={styles.preferences__content}>

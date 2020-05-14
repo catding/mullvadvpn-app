@@ -52,8 +52,9 @@ export default class Settings extends Component<IProps> {
                   <CloseBarItem action={this.props.onClose} />
                   <TitleBarItem>
                     {
-                      // TRANSLATORS: Title label in navigation bar
-                      messages.pgettext('navigation-bar', 'Settings')
+                      // TRANSLATORS: Navigation label associated with the 'Settings' view
+                      // TRANSLATORS: This is used in the page title and in back buttons
+                      messages.pgettext('navigation', 'Settings')
                     }
                   </TitleBarItem>
                 </NavigationItems>
@@ -64,7 +65,7 @@ export default class Settings extends Component<IProps> {
                   <View style={styles.content}>
                     {showLargeTitle && (
                       <SettingsHeader>
-                        <HeaderTitle>{messages.pgettext('navigation-bar', 'Settings')}</HeaderTitle>
+                        <HeaderTitle>{messages.pgettext('navigation', 'Settings')}</HeaderTitle>
                       </SettingsHeader>
                     )}
                     <View>
@@ -116,8 +117,9 @@ export default class Settings extends Component<IProps> {
           <Cell.CellButton onPress={this.props.onViewAccount}>
             <Cell.Label>
               {
-                // TRANSLATORS: Navigation button to the 'Account' view
-                messages.pgettext('settings-view', 'Account')
+                // TRANSLATORS: Navigation label associated with the 'Account' view
+                // TRANSLATORS: This is used in the navigation button and page title
+                messages.pgettext('navigation', 'Account')
               }
             </Cell.Label>
             <Cell.SubText style={isOutOfTime ? styles.accountPaidUntilErrorLabel : undefined}>
@@ -130,8 +132,9 @@ export default class Settings extends Component<IProps> {
         <Cell.CellButton onPress={this.props.onViewPreferences}>
           <Cell.Label>
             {
-              // TRANSLATORS: Navigation button to the 'Preferences' view
-              messages.pgettext('settings-view', 'Preferences')
+              // TRANSLATORS: Navigation label associated with the 'Preferences' view
+              // TRANSLATORS: This is used in the navigation button and page title
+              messages.pgettext('navigation', 'Preferences')
             }
           </Cell.Label>
           <Cell.Icon height={12} width={7} source="icon-chevron" />
@@ -140,8 +143,9 @@ export default class Settings extends Component<IProps> {
         <Cell.CellButton onPress={this.props.onViewAdvancedSettings}>
           <Cell.Label>
             {
-              // TRANSLATORS: Navigation button to the 'Advanced' settings view
-              messages.pgettext('settings-view', 'Advanced')
+              // TRANSLATORS: Navigation label associated with the 'Advanced settings' view
+              // TRANSLATORS: This is used in the navigation button, page title, and back buttons
+              messages.pgettext('navigation', 'Advanced')
             }
           </Cell.Label>
           <Cell.Icon height={12} width={7} source="icon-chevron" />
@@ -198,8 +202,9 @@ export default class Settings extends Component<IProps> {
         <Cell.CellButton onPress={this.props.onViewSupport}>
           <Cell.Label>
             {
-              // TRANSLATORS: Navigation button to the 'Report a problem' help view
-              messages.pgettext('settings-view', 'Report a problem')
+              // TRANSLATORS: Navigation label associated with the 'Report a problem' view
+              // TRANSLATORS: This is used in the navigation button and page title
+              messages.pgettext('navigation', 'Report a problem')
             }
           </Cell.Label>
           <Cell.Icon height={12} width={7} source="icon-chevron" />
@@ -219,8 +224,9 @@ export default class Settings extends Component<IProps> {
           <Cell.UntintedIcon width={24} height={24} source="icon-language" />
           <Cell.Label>
             {
-              // TRANSLATORS: Navigation button to the 'Language' settings view
-              messages.pgettext('settings-view', 'Language')
+              // TRANSLATORS: Navigation label associated with the 'Select language' view
+              // TRANSLATORS: This is used in the navigation button
+              messages.pgettext('navigation', 'Language')
             }
           </Cell.Label>
           <Cell.SubText>{this.props.preferredLocaleDisplayName}</Cell.SubText>

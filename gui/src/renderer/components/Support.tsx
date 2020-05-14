@@ -114,7 +114,7 @@ export default class Support extends Component<ISupportProps, ISupportState> {
     const { sendState, showOutdatedVersionWarning } = this.state;
     const header = (
       <SettingsHeader>
-        <HeaderTitle>{messages.pgettext('support-view', 'Report a problem')}</HeaderTitle>
+        <HeaderTitle>{messages.pgettext('navigation', 'Report a problem')}</HeaderTitle>
         {(sendState === SendState.Initial || sendState === SendState.Confirm) && (
           <HeaderSubTitle>
             {messages.pgettext(
@@ -136,10 +136,7 @@ export default class Support extends Component<ISupportProps, ISupportState> {
               <NavigationBar>
                 <NavigationItems>
                   <BackBarItem action={this.props.onClose}>
-                    {
-                      // TRANSLATORS: Back button in navigation bar
-                      messages.pgettext('navigation-bar', 'Settings')
-                    }
+                    {messages.pgettext('navigation', 'Settings')}
                   </BackBarItem>
                 </NavigationItems>
               </NavigationBar>

@@ -140,26 +140,16 @@ export default class AdvancedSettings extends Component<IProps, IState> {
                 <NavigationBar>
                   <NavigationItems>
                     <BackBarItem action={this.props.onClose}>
-                      {
-                        // TRANSLATORS: Back button in navigation bar
-                        messages.pgettext('navigation-bar', 'Settings')
-                      }
+                      {messages.pgettext('navigation', 'Settings')}
                     </BackBarItem>
-                    <TitleBarItem>
-                      {
-                        // TRANSLATORS: Title label in navigation bar
-                        messages.pgettext('advanced-settings-nav', 'Advanced')
-                      }
-                    </TitleBarItem>
+                    <TitleBarItem>{messages.pgettext('navigation', 'Advanced')}</TitleBarItem>
                   </NavigationItems>
                 </NavigationBar>
 
                 <View style={styles.advanced_settings__container}>
                   <NavigationScrollbars style={styles.advanced_settings__scrollview}>
                     <SettingsHeader>
-                      <HeaderTitle>
-                        {messages.pgettext('advanced-settings-view', 'Advanced')}
-                      </HeaderTitle>
+                      <HeaderTitle>{messages.pgettext('navigation', 'Advanced')}</HeaderTitle>
                     </SettingsHeader>
 
                     <Cell.Container>
@@ -358,7 +348,12 @@ export default class AdvancedSettings extends Component<IProps, IState> {
                     <View style={styles.advanced_settings__wgkeys_cell}>
                       <Cell.CellButton onPress={this.props.onViewWireguardKeys}>
                         <Cell.Label>
-                          {messages.pgettext('advanced-settings-view', 'WireGuard key')}
+                          {
+                            // TRANSLATORS: Navigation label associated with the 'WireGuard key'
+                            // TRANSLATORS: view.
+                            // TRANSLATORS: This is used in the navigation button and page title
+                            messages.pgettext('navigation', 'WireGuard key')
+                          }
                         </Cell.Label>
                         <Cell.Icon height={12} width={7} source="icon-chevron" />
                       </Cell.CellButton>

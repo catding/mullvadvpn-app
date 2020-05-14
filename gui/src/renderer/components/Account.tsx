@@ -36,17 +36,14 @@ export default class Account extends React.Component<IProps> {
           <NavigationBar>
             <NavigationItems>
               <BackBarItem action={this.props.onClose}>
-                {
-                  // TRANSLATORS: Back button in navigation bar
-                  messages.pgettext('navigation-bar', 'Settings')
-                }
+                {messages.pgettext('navigation', 'Settings')}
               </BackBarItem>
             </NavigationItems>
           </NavigationBar>
 
           <AccountContainer>
             <SettingsHeader>
-              <HeaderTitle>{messages.pgettext('account-view', 'Account')}</HeaderTitle>
+              <HeaderTitle>{messages.pgettext('navigation', 'Account')}</HeaderTitle>
             </SettingsHeader>
 
             <AccountRow>
